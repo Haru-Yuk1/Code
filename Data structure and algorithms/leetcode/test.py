@@ -1,0 +1,1 @@
+print(sum(map(lambda x:int(eval(x)),input().split('+')))%10000)

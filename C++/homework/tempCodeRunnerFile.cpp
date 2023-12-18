@@ -1,0 +1,1 @@
+  cout << deleted << endl
