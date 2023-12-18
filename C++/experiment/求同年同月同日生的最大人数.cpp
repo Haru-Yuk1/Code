@@ -32,11 +32,12 @@ int main() {
     vector<string> dates;
     // 遍历map中的每个键值对，找出最大的计数，并把对应的日期存入vector中
     for (auto it = count.begin(); it != count.end(); it++) {
+        
         // 如果当前的计数大于max，就更新max，并清空vector，把当前的日期插入到vector中
-        if (it->second > max) {
+        if (it->second > max) {  //it->second 会得到it的value值
             max = it->second;
             dates.clear();
-            dates.push_back(it->first);
+            dates.push_back(it->first); //it->first 会得到it的key值
         }
         // 如果当前的计数等于max，就把当前的日期插入到vector中
         else if (it->second == max) {

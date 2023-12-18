@@ -67,26 +67,33 @@ TreeNode* leftRotate(TreeNode* node)
     // 返回新的根节点
     return right;
 }
-TreeNode* Balancing(TreeNode* node){
+TreeNode* SearchBSTRecur(TreeNode* root,int val){
+    if(root==nullptr||root->val==val){
+        return root;
+    }
+    if(val<root->val){ //key的值小于根，往左子树查找
+        return SearchBSTRecur(root->left,val);
+    }
+    else{ //key的值大于根，往右子树查找
+        return SearchBSTRecur(root->right,val);
+    }
+}
+TreeNode* SearchBSTUnRecur(TreeNode* root,int val){
+    TreeNode* node=root;
+    while (node!=nullptr && node->val!=val)
+    {
+        if(val<node->val){//key的值小于根，往左子树查找
+            node=node->left;
+        }
+        else{//key的值大于根，往右子树查找
+            node=node->right;
+        }
+    }
+    return node;
     
 }
-TreeNode* insert(TreeNode* root, int val)
-{
-    // 如果树为空，直接创建一个新的节点作为根节点
-    if (root == nullptr) return new TreeNode(val);
-
-    // 如果值小于当前节点的值，递归地向左子树插入
-    if (val < root->val) root->left = insert(root->left, val);
-
-    // 如果值大于当前节点的值，递归地向右子树插入
-    else if (val > root->val) root->right = insert(root->right, val);
-
-    // 如果值等于当前节点的值，不进行插入，直接返回当前节点
-    else return root;
-
-    // 插入后，更新当前节点的高度
-    root->height = max(getHeight(root->left), getHeight(root->right)) + 1;
-
+//对AVL树插入与删除后的维护平衡
+TreeNode* Balancing(TreeNode* root,int val){
     // 计算当前节点的平衡因子
     int balance = getBalance(root);
 
@@ -113,6 +120,28 @@ TreeNode* insert(TreeNode* root, int val)
 
     // 如果树平衡，直接返回当前节点
     return root;
+}
+//插入操作可以直接调用BST中的插入算法
+TreeNode* insert(TreeNode* root, int val)
+{
+    // 如果树为空，直接创建一个新的节点作为根节点
+    if (root == nullptr) return new TreeNode(val);
+
+    // 如果值小于当前节点的值，递归地向左子树插入
+    if (val < root->val) root->left = insert(root->left, val);
+
+    // 如果值大于当前节点的值，递归地向右子树插入
+    else if (val > root->val) root->right = insert(root->right, val);
+
+    // 如果值等于当前节点的值，不进行插入，直接返回当前节点
+    else return root;
+
+    // 插入后，更新当前节点的高度
+    UpdateHeight(root);
+    
+    //返回经过平衡后的节点
+    return Balancing(root,val);
+   
 }
 
 TreeNode* deleteNode(TreeNode* root, int val)
@@ -156,44 +185,26 @@ TreeNode* deleteNode(TreeNode* root, int val)
     }
 
     // 删除后，更新当前节点的高度
-    root->height = max(getHeight(root->left), getHeight(root->right)) + 1;
+    UpdateHeight(root);
 
-    // 计算当前节点的平衡因子
-    int balance = getBalance(root);
-
-    // 如果平衡因子的绝对值大于1，说明树不平衡，需要进行旋转操作
-
-    // 左左情况，对当前节点进行右旋
-    if (balance > 1 && getBalance(root->left) >= 0) return rightRotate(root);
-
-    // 左右情况，先对左子节点进行左旋，然后对当前节点进行右旋
-    if (balance > 1 && getBalance(root->left) < 0)
-    {
-        root->left = leftRotate(root->left);
-        return rightRotate(root);
-    }
-
-    // 右右情况，对当前节点进行左旋
-    if (balance < -1 && getBalance(root->right) <= 0) return leftRotate(root);
-
-    // 右左情况，先对右子节点进行右旋，然后对当前节点进行左旋
-    if (balance < -1 && getBalance(root->right) > 0)
-    {
-        root->right = rightRotate(root->right);
-        return leftRotate(root);
-    }
-
-    // 如果树平衡，直接返回当前节点
-    return root;
+    //返回平衡后的节点
+    return Balancing(root,val);
 }
-
+void InOrderRecur(TreeNode* head){
+    if(head==nullptr){
+        return;
+    }
+    InOrderRecur(head->left);
+    cout<<head->val<<" ";
+    InOrderRecur(head->right);
+}
 int main(){
-    TreeNode* head=new TreeNode(1);
+    TreeNode* head=new TreeNode(4);
     TreeNode* temp1=new TreeNode(2);
-    TreeNode* temp2=new TreeNode(3);
-    TreeNode* temp3=new TreeNode(4);
-    TreeNode* temp4=new TreeNode(5);
-    TreeNode* temp5=new TreeNode(6);
+    TreeNode* temp2=new TreeNode(6);
+    TreeNode* temp3=new TreeNode(1);
+    TreeNode* temp4=new TreeNode(3);
+    TreeNode* temp5=new TreeNode(5);
     TreeNode* temp6=new TreeNode(7);
     head->left=temp1;
     head->right=temp2;
@@ -201,5 +212,34 @@ int main(){
     temp1->right=temp4;
     temp2->left=temp5;
     temp2->right=temp6;
-
+    head->height=2;
+    temp1->height=1;
+    temp2->height=1;
+    
+    InOrderRecur(head);
+    cout<<endl;
+    
+    cout<<"————删除节点————"<<endl;
+    deleteNode(head,2);
+    InOrderRecur(head);
+    cout<<endl;
+    cout<<"————插入节点————"<<endl;
+    insert(head,8);
+    InOrderRecur(head);
+    cout<<endl;
+    cout<<"————查找节点————"<<endl;
+    if(SearchBSTRecur(head,3)){
+        cout<<"找到该节点,值为:"<<SearchBSTRecur(head,3)->val;
+    }
+    else{
+        cout<<"没找到";
+    }
+    cout<<endl;
+    if(SearchBSTUnRecur(head,3)){
+        cout<<"找到该节点,值为:"<<SearchBSTUnRecur(head,3)->val;
+    }
+    else{
+        cout<<"没找到";
+    }
+    cout<<endl;
 }

@@ -10,15 +10,15 @@ int main() {
     cin>>n>>k;
     for (int i = 0; i < n; i++) {
       cin >> b >> l;
-      if (l > k)
+      if (l > k) //如果里程数大于k，则直接记录
         a[b] += l;
-      else
+      else   //如果里程数小于k，则记录k
         a[b] += k;
     }
     cin>>m;
     for (int i = 0; i < m; i++) {
       cin >> b;
-      if (a.count(b)) {
+      if (a.count(b)) { //判断是否是会员
         cout << a[b] << endl;
       }
       else {
