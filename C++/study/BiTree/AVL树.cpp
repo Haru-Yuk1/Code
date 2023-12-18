@@ -49,6 +49,7 @@ TreeNode* rightRotate(TreeNode* node)
     // 返回新的根节点
     return left;
 }
+//左旋
 TreeNode* leftRotate(TreeNode* node)
 {
     // 保存节点的右子节点和右子节点的左子节点
@@ -65,6 +66,9 @@ TreeNode* leftRotate(TreeNode* node)
 
     // 返回新的根节点
     return right;
+}
+TreeNode* Balancing(TreeNode* node){
+    
 }
 TreeNode* insert(TreeNode* root, int val)
 {
@@ -95,6 +99,7 @@ TreeNode* insert(TreeNode* root, int val)
     if (balance > 1 && val > root->left->val)
     {
         root->left = leftRotate(root->left);
+        return rightRotate(root);
     }
         // 右右情况，对当前节点进行左旋
     if (balance < -1 && val > root->right->val) return leftRotate(root);
