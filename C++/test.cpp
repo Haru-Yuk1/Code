@@ -1,61 +1,47 @@
-#include <cstdio>
-#include <cstring>
 #include <iostream>
-#include <algorithm>
 using namespace std;
-const int maxn = 1e6 + 10;
-const int maxsize = 15;
-struct Trie {
-    int tot, child[maxn][maxsize];
-    int val[maxn];
-    void init() {
-        tot = 0;
-        memset(child[0], -1, sizeof(child[0]));
-        memset(val, 0, sizeof(val));
-    }
-    void Insert(char *s, int v) {
-        int root = 0;
-        for (int i = 0; s[i]; i++) {
-            int index;
-            if (s[i] == 'x' || s[i] == 'X') index = 10;
-            else index = s[i] - '0';
-            int u = child[root][index];
-            if (u == -1) {
-                u = ++tot;
-                memset(child[u], -1, sizeof(child[u]));
-                child[root][index] = u;
-            }
-            root = u;
-        }
-        val[root] += v;
-    }
-    int Query(char *s) {
-        int root = 0;
-        for (int i = 0; s[i]; i++) {
-            int index;
-            if (s[i] == 'x' || s[i] == 'X') index = 10;
-            else index = s[i] - '0';
-            int u = child[root][index];
-            if (u == -1) return -1;
-            root = u;
-        }
-        return val[root];
-    }
-}trie;
+
 int main() {
-    trie.init();
-    char str[20];
-    int n, k, x; scanf("%d %d", &n, &k);
-    for (int i = 1; i <= n; i++) {
-        scanf("%s%d", str, &x);
-        if (x < k) x = k;
-        trie.Insert(str, x);
+    int N, M, P; // 待存储的元素个数，散列表的长度，散列函数的模数
+    cin >> N >> M >> P;
+    int* arr = new int[M]; // 散列表
+    for (int i = 0; i < M; i++) {
+        arr[i] = -1; // 初始化为-1，表示空位
     }
-    int q; scanf("%d", &q);
-    for (int i = 1; i <= q; i++) {
-        scanf("%s", str);
-        x = trie.Query(str);
-        if (x != -1) printf("%d\n", x);
-        else printf("No Info\n");
+    for (int i = 0; i < N; i++) {
+        int temp; // 输入的元素
+        cin >> temp;
+        int index = temp % P; // 计算散列地址
+        while (arr[index] != -1) { // 如果发生冲突，线性探测
+            index = (index + 1) % M; // 下一个地址
+        }
+        arr[index] = temp; // 插入元素
     }
+    int num1 = 0, num2 = 0; // 查找成功和查找失败的总查找长度
+    int count1 = 0, count2 = 0; // 查找成功和查找失败的总查找次数
+    for (int i = 0; i < M; i++) {
+        if (arr[i] != -1) { // 如果该位置有元素
+            count1++; // 查找成功次数加一
+            int index = arr[i] % P; // 计算散列地址
+            int len = 1; // 查找长度
+            while (index != i) { // 如果不是目标位置，线性探测
+                index = (index + 1) % M; // 下一个地址
+                len++; // 查找长度加一
+            }
+            num1 += len; // 累加查找成功的总查找长度
+        } else { // 如果该位置为空
+            count2++; // 查找失败次数加一
+            int index = i; // 当前地址
+            int len = 1; // 查找长度
+            while (arr[index] != -1) { // 如果不是空位，线性探测
+                index = (index + 1) % M; // 下一个地址
+                len++; // 查找长度加一
+            }
+            num2 += len; // 累加查找失败的总查找长度
+        }
+    }
+    cout << num1 << "/" << count1 << endl; // 输出查找成功时的平均查找长度
+    cout << num2 << "/" << count2 << endl; // 输出查找失败时的平均查找长度
+    delete[] arr;
+    return 0;
 }

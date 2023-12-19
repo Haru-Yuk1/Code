@@ -1,1 +1,1 @@
-  cout << deleted << endl
+cout << hashTable[i] << " ";

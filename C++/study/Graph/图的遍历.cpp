@@ -102,21 +102,21 @@ void bfs(Node* nodes){
 void dfs(Node* node)
 {
 	if(node == NULL)	return;
-	stack<Node*> s;
-	unordered_set<Node*> set;
-	s.push(node); 
+	stack<Node*> stk;			//定义一个栈，用来存放节点
+	unordered_set<Node*> set;  	//定义一个集合判断是否遍历过
+	stk.push(node);   			//将当前节点放入栈
 	set.insert(node);
 	cout<<node->value<<" "; 				//第一个元素直接输出 
-	while(!s.empty())
+	while(!stk.empty())  					//出栈直到为空
 	{
-		Node* help = s.top();
-		s.pop();
-		for(auto tmp : help->nexts)
+		Node* help = stk.top();
+		stk.pop();
+		for(auto tmp : help->nexts)			//遍历当前节点的下一个节点
 		{
 			if(set.find(tmp) == set.end())	//该节点如果没有遍历过
 			{
-				s.push(help);				//把当前节点压回栈
-				s.push(tmp);				//把第一个找到的邻接节点压入栈，并记录
+				stk.push(help);				//把当前节点压回栈
+				stk.push(tmp);				//把第一个找到的邻接节点压入栈，并记录
 				set.insert(tmp);
 				cout<<tmp->value<< " ";
 				break;						//一次只找一个 
@@ -175,9 +175,6 @@ int main(){
 	cout<<endl<<"-----------------------------------------------"<<endl ;
 	cout<<"宽度优先遍历bfs： "<<endl;
 	bfs(node);
-	
-	
-	
 	
 	cout<<endl<<"-----------------------------------------------"<<endl ;
 	cout<<"深度优先遍历dfs： "<<endl;

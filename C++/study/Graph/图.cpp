@@ -8,12 +8,12 @@ class Edge;
 //节点的五个数据，值，入度，出度，下一节点，该节点出发的边
 class Node{
     public:
-        int value;
-        int in;
-        int out;
-        list<Node*> nexts;
-        list<Edge*> edges;
-        Node(int value){
+        int value;  //节点的值
+        int in;	  	//入度
+        int out;	//出度
+        list<Node*> nexts; //下一节点
+        list<Edge*> edges; //该节点出发的边
+        Node(int value){   //构造函数 初始化
             this->value=value;
             in=0;
             out=0;
@@ -22,8 +22,8 @@ class Node{
 // Graph类有点和边两大部分，使用hash_map存储节点,使用hash_set存储边的信息
 class Graph{
     public: 
-        unordered_map<int,Node*> nodes;
-        unordered_set<Edge*> edges;
+        unordered_map<int,Node*> nodes;  	//点集
+        unordered_set<Edge*> edges;  		//边集
         Graph(){};
         Graph(Node* node,Edge* edge){
             nodes.emplace(1,node);
@@ -36,15 +36,16 @@ class Graph{
 // 边上的权重、当前边的from和to节点
 class Edge{
     public:
-        int weight;
-        Node* from;
-        Node* to;
+        int weight;	//权重
+        Node* from;	//来点
+        Node* to;	//去点
         Edge(int weight,Node* from,Node* to){
             this->weight=weight;
             this->from=from;
             this->to=to;
         }
 };
+//构造图的函数，matrix 第一列为权重，如果，第二列为来点，第三列为出点
 Graph createGraph(vector<vector<int>> matrix){
     Graph graph;
     for(int i=0;i<matrix.size();i++){
@@ -64,7 +65,7 @@ Graph createGraph(vector<vector<int>> matrix){
 		//新建边 
 		Edge* newEdge = new Edge(weight, fromNode, toNode);
 		
-		//增加节点的四个数据 
+		//增加节点的四个数据
 		fromNode->nexts.push_back(toNode);
 		fromNode->edges.push_back(newEdge);
 		fromNode->out++;
