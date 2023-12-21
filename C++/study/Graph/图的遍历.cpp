@@ -88,8 +88,8 @@ void bfs(Node* nodes){
     {
         Node* help=q.front(); //弹出队列
         q.pop();
-        cout<<help->value<<" ";
-        for(Node* t:help->nexts){ //遍历当前节点的邻接节点
+        cout<<help->value<<" "; 		//如果是要处理将打印换了即可
+        for(Node* t:help->nexts){ 		//遍历当前节点的邻接节点
             if(set.find(t)==set.end()){ //如果不在哈希表，则入队并记录
                 q.push(t);
                 set.emplace(t);
