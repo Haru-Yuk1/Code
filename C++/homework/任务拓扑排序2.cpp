@@ -2,11 +2,11 @@
 #include<algorithm>
 #include<vector>
 #include<queue> 
-int mapp[101][101];
+int mapp[101][101]; //图
 int du[101];//初始值为0？ 
 int n,e,cnt; 
 using namespace std;
-priority_queue<int,vector<int>,greater<int> >q;//
+priority_queue<int,vector<int>,greater<int> >q;//小顶堆
 vector<int>g[101];
 int tpsort()//关键！ 
 {

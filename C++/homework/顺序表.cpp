@@ -7,7 +7,7 @@ struct List
     int length;
 };
 void createList(List *lp){
-    int i,
+    int i;
 }
 int main(){
     
