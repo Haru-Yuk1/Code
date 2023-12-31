@@ -116,59 +116,6 @@ unordered_map<Node*,int> Dijkstra1(Node* head){
     return distanceMap;
 }
 
-// //用自己写的堆优化的D算法，不能用系统的堆
-// class NodeRecord{
-//     public:
-//         Node* node;
-//         int distance;
-//         NodeRecord(Node* node,int distance){
-//             this->node=node;
-//             this->distance=distance;
-//         }
-// };
-// class NodeHeap{
-//     private:
-//         vector<Node*> *nodes; //堆的底层结构是数组
-//         unordered_map<Node*,int> HeapIndexMap;  //节点与它的index，给出节点在堆上的位置
-//         unordered_map<Node*,int> DistanceMap;   //节点的值（距离）
-//         int size;   //目前堆上有多少节点
-//     public:
-//         NodeHeap(int size){
-//             nodes=new vector<Node*>(size);
-//             this->size=0;
-//         }
-//         bool isEmpty(){
-//             return size==0;
-//         }
-//         bool isEntered(Node* node){     //node进没进来过
-//             return HeapIndexMap.count(node);
-//         }
-//         bool inHeap(Node* node){
-//             return isEntered(node)&&(HeapIndexMap[node]!=-1);
-//         }
-//         void swap(int index1,int index2){
-//             HeapIndexMap.emplace(nodes[index1],index2);
-//             HeapIndexMap.emplace(nodes[index2],index1);
-            
-//         }
-//         void insertHeapify(Node* node,int index){
-//             while(DistanceMap[&nodes[index]]<)
-//         }
-//         void addOrUpdateOrIgnore(Node* node,int distance){
-//             if(inHeap(node)){
-//                 DistanceMap.emplace(node,min(DistanceMap[node],distance));
-//                 insert
-//             }
-//         }
-// };
-// //从head出发，所有head能到达的节点，生成到达每个节点的最小路径记录并返回
-// unordered_map<Node*,int> Dijkstra2(Node* head,int size){
-//     NodeHeap* nodeHeap=new NodeHeap(size);
-//     nodeHeap;
-//     unordered_map<Node*,int> result;
-
-// }
-
 int main(){
     vector<vector<int> > matrix= {{-3,1,2},{15,1,3},{9,1,4},{2,2,3},{2,3,2},{200,2,5},
     {200,5,2},{7,3,4},{7,4,3},{14,3,5},{14,5,3},{16,4,5},{16,5,4}};
