@@ -38,7 +38,7 @@ ListNode* Search(ListNode* head,int val){
     }
     return tmp;
 }
-//插入
+//插入 这里的index是0开始
 ListNode* Insert(ListNode* head,int index,int val){
     ListNode* root=head;
     for(int i=0;i<index-1;i++){
