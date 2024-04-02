@@ -1,5 +1,6 @@
 #include<iostream>
 using namespace std;
+//low和high实指
 int BinarySearch1(int arr[],int left,int right,int key){
     int low=left;
     int high=right;
@@ -16,7 +17,7 @@ int BinarySearch1(int arr[],int left,int right,int key){
 	}
 	return -1;	//查找失败，返回-1
 }
-
+//low和high虚指,在区间外
 int BinarySearch2(int arr[],int left,int right,int key){
     int low=left-1;
     int high=right+1;

@@ -49,7 +49,7 @@ TreeNode* PreOrderDeSerialize(string& s)
         return nullptr;
     if (s[0] == '#')
     {
-        s = s.substr(1);
+        s = s.substr(1);    //从1开始截取字符，相当于删除第一个元素
         return nullptr;
     }
     TreeNode* node = new TreeNode(s[0]-'0');

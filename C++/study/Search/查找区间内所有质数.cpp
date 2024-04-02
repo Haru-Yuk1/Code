@@ -1,4 +1,5 @@
 #include <iostream>
+#include<cmath>
 #include <vector>
 using namespace std;
 
@@ -32,5 +33,6 @@ int main() {
     cout << p << " ";
   }
   cout << endl;
-  return 0;
+
+
 }

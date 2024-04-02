@@ -87,7 +87,7 @@ void PosOrderUnRecur(TreeNode* head){
     if(head==nullptr){
         return;
     }
-    // 两个栈，一个栈用来先序遍历，一个栈用来倒序
+    // 两个栈，一个栈用来先序遍历(这个先序遍历是根右左不是根左右)，一个栈用来倒序
     stack<TreeNode*> stk1;
     stack<TreeNode*> stk2;
     stk1.push(head);
@@ -123,7 +123,7 @@ void widthTraversal(TreeNode* head){
         if(cur->left!=nullptr){ //先进左结点，先出
             q.push(cur->left);
         }
-        if(cur->right!=nullptr){//先进右结点，后出
+        if(cur->right!=nullptr){//后进右结点，后出
             q.push(cur->right);
         }
     }
@@ -137,7 +137,8 @@ int treeWidth(TreeNode* head){
     queue<TreeNode*> q;
     q.push(head);
     unordered_map<TreeNode*,int> levelMap;
-    levelMap.insert(pair<TreeNode*,int>(head,1));
+    // levelMap.insert(pair<TreeNode*,int>(head,1));
+    levelMap.emplace(head,1);
     int curLevel=1;
     int curLevelNodes=0;
     int Max=-1;

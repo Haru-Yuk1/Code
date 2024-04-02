@@ -7,6 +7,7 @@ void swap(int* a,int* b){
     a=b;
     b=temp;
 }
+
 vector<int> SelectionSort(vector<int> arr){
     if(arr.empty()||arr.size()<2){ //当arr为空,或只有一个元素
         return arr;

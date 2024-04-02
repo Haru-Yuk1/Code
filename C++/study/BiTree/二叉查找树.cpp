@@ -25,7 +25,7 @@ TreeNode* SearchBSTUnRecur(TreeNode* bst,int key){
     TreeNode* node=bst;
     while (node!=nullptr && node->val!=key)
     {
-        if(key<node->val){//key的值小于根，往左子树查找
+        if(key<node->val){//key的值小于当前节点的值，说明以key为值的节点在左子树，往左子树查找
             node=node->left;
         }
         else{//key的值大于根，往右子树查找
@@ -48,31 +48,32 @@ TreeNode* InsertRecur(TreeNode* bst,int key){
     }
     return bst; //当key的值等于根，说明已经有该节点或者已经插入
 }
-TreeNode* InsertUnRecur(TreeNode* bst,int key){
-    TreeNode* node =bst;
-    TreeNode* father=nullptr;
-    while(node!=nullptr&&node->val!=key){ //直到查找到有这个节点或者不存在为止
-        father=node;  
-        if(key<node->val){  //将node下移
-            node=node->left;
+TreeNode* InsertUnRecur(TreeNode* head,int key){
+    TreeNode* cur =head;
+    TreeNode* curParent=nullptr;
+    //先查找
+    while(cur&&cur->val!=key){  //当当前结点不为空，且当前节点值不为key，将节点下移
+        curParent=cur;          //先记录当前节点
+        if(cur->val>key){       //key的值小于当前节点的值，说明以key为值的节点在左子树，往左子树查找
+            cur=cur->left;
         }
         else{
-            node-node->right;
+            cur=cur->right;
         }
     }
-    if(node==nullptr){ //如果该节点不存在
-        node=new TreeNode(key);  //建立新节点
-        if(father==nullptr){ //如果father=null说明整棵树不存在
-            bst=node;
+    if(cur==nullptr){ //如果该节点不存在
+        cur=new TreeNode(key);  //建立新节点
+        if(curParent==nullptr){ //如果father=null说明整棵树不存在
+            head=cur;
         }
-        else if(key<father->val){  //如果小于父亲节点的值，则插入到左子树
-            father->left=node;
+        else if(key<curParent->val){  //如果小于父亲节点的值，则插入到左子树
+            curParent->left=cur;
         }
         else{  //如果大于父亲节点的值，则插入到右子树
-            father->right=node;
+            curParent->right=cur;
         }
     }
-    return bst;
+    return head;
 }
 TreeNode* RemovalRecur(TreeNode* bst,int key){
     if(bst==nullptr){
@@ -95,7 +96,7 @@ TreeNode* RemovalRecur(TreeNode* bst,int key){
             return bst->right;
         }
         else if(bst->right==nullptr){ //右子树为空，将左子树作为新子树，返回左子节点
-            return bst->right;
+            return bst->left;
         }
         //左右都有子树
         TreeNode* minRight=bst->right;
@@ -113,53 +114,63 @@ TreeNode* RemovalRecur(TreeNode* bst,int key){
 
 }
 
-TreeNode* RemovalUnRecur(TreeNode* root, int key) {
-    TreeNode *cur = root, *curParent = nullptr;
-    while (cur && cur->val != key) {
+TreeNode* RemovalUnRecur(TreeNode* head, int key) {
+    TreeNode *cur = head, *curParent = nullptr;
+    //先查找
+    while (cur && cur->val != key) {    //当当前结点不为空，且当前节点值不为key，将节点下移
         curParent = cur;
-        if (cur->val > key) {
+        if (cur->val > key) {          //key的值小于当前节点的值，说明以key为值的节点在左子树，往左子树查找
             cur = cur->left;
         } else {
             cur = cur->right;
         }
     }
-    if (!cur) {
-        return root;
+    if (!cur) {                         //如果这个节点为空，说明没有该节点，则直接返回
+        return head;
     }
-    if (!cur->left && !cur->right) {
+    if (!cur->left && !cur->right) {    //如果左右子树为空，则直接将这个节点删除
         cur = nullptr;
-    } else if (!cur->right) {
+    } else if (!cur->right) {           //如果该节点右子树为空，左子树作为子树
         cur = cur->left;
-    } else if (!cur->left) {
+    } else if (!cur->left) {            //如果该节点左子树为空，右子树作为子树
         cur = cur->right;
-    } else {
+    } else {                            //如果该节点左右子树都不为空，则找后继节点
         TreeNode *successor = cur->right, *successorParent = cur;
-        while (successor->left) {
+        while (successor->left) {       //找到最左的子树
             successorParent = successor;
             successor = successor->left;
         }
-        if (successorParent->val == cur->val) {
+        if (successorParent->val == cur->val) { //如果该节点的父节点等于该节点的值，说明右节点没有左节点，就是后继节点
             successorParent->right = successor->right;
-        } else {
+        } else {                       //如果找到后继节点，继承它的右节点
             successorParent->left = successor->right;
         }
+        //把这个后继节点拿出来，作为新的当前节点
         successor->right = cur->right;
         successor->left = cur->left;
         cur = successor;
     }
-    if (!curParent) {
+    if (!curParent) {   //如果当前节点的父节点为空，则直接返回当前结点
         return cur;
-    } else {
-        if (curParent->left && curParent->left->val == key) {
+    } else {    //不为空，则重新接好
+        if (curParent->left && curParent->left->val == key) {   
             curParent->left = cur;
         } else {
             curParent->right = cur;
         }
-        return root;
+        return head;
     }       
 }
 
-
+void InOrderRecur(TreeNode* head){
+    if(head==nullptr){
+        return;
+    }
+    InOrderRecur(head->left);
+    cout<<head->val<<" ";
+    InOrderRecur(head->right);
+    
+}
 
 int main(){
     TreeNode* head=new TreeNode(6);
@@ -174,8 +185,25 @@ int main(){
     temp1->left=temp3;
     temp1->right=temp4;
     temp4->left=temp5;
-    RemovalUnRecur(head,3);
+    cout<<"原来的树中序遍历"<<endl;
+    TreeNode* p=head;
+    InOrderRecur(p);
+    cout<<endl;
+    cout<<"——————删除——————"<<endl;
+    RemovalRecur(head,3);
+    RemovalUnRecur(head,4);
+    cout<<"删除后的树的中序遍历"<<endl;
+    p=head;
+    InOrderRecur(p);
+    cout<<endl;
+    cout<<"——————插入——————"<<endl;
     InsertRecur(head,3);
+    InsertUnRecur(head,4);
+    cout<<"插入后的树的中序遍历"<<endl;
+    p=head;
+    InOrderRecur(p);
+    
+    cout<<endl;
     cout<<"——————查找——————"<<endl;
     if(SearchBSTRecur(head,3)){
         cout<<"找到该节点,值为:"<<SearchBSTRecur(head,3)->val;

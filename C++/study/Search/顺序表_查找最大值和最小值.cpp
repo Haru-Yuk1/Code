@@ -1,5 +1,6 @@
 #include<iostream>
 using namespace std;
+//朴素查找法，每次比较一个元素，比较次数2(n-1)
 int res1[2];
 int* findmaxandmin1(int arr[],int n){
     int max=arr[0];
@@ -13,6 +14,7 @@ int* findmaxandmin1(int arr[],int n){
     res1[1]=min;
     return res1;
 }
+//快速查找法，每次同时比较两个元素，比较次数为(3/2)n
 int res2[2];
 int* findmaxandmin2(int arr[],int n){
     int max=arr[0];

@@ -25,7 +25,7 @@ void UpdateHeight(TreeNode* node){
         node->height=max(leftHeight,rightHeight)+1; //更新该节点高度
     }
 }
-//
+//获取结点的平衡因子
 int getBalance(TreeNode* node)
 {
     if (node == nullptr) return 0;

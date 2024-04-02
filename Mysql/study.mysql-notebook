@@ -1,0 +1,576 @@
+{
+    "type": "MySQLNotebook",
+    "version": "1.0",
+    "caption": "DB Notebook",
+    "content": "\\about\nuse game;\nDESC player;\n\nSELECT * FROM player;\nDELETE FROM player;\nset character_set_results=utf8;\nshow variables like '%character%';\nINSERT INTO player (id, name, level, exp, gold) VALUES (1,'张三',1,1,1)\nSELECT * FROM player;\n",
+    "options": {
+        "tabSize": 4,
+        "indentSize": 4,
+        "insertSpaces": true,
+        "defaultEOL": "LF",
+        "trimAutoWhitespace": true
+    },
+    "viewState": {
+        "cursorState": [
+            {
+                "inSelectionMode": false,
+                "selectionStart": {
+                    "lineNumber": 9,
+                    "column": 70
+                },
+                "position": {
+                    "lineNumber": 9,
+                    "column": 70
+                }
+            }
+        ],
+        "viewState": {
+            "scrollLeft": 0,
+            "firstPosition": {
+                "lineNumber": 9,
+                "column": 1
+            },
+            "firstPositionDeltaTop": 236
+        },
+        "contributionsState": {
+            "editor.contrib.folding": {},
+            "editor.contrib.wordHighlighter": false
+        }
+    },
+    "contexts": [
+        {
+            "state": {
+                "start": 1,
+                "end": 1,
+                "language": "mysql",
+                "result": {
+                    "type": "text",
+                    "text": [
+                        {
+                            "type": 2,
+                            "content": "Welcome to the MySQL Shell - DB Notebook.\n\nPress Ctrl+Enter to execute the code block.\n\nExecute \\sql to switch to SQL, \\js to JavaScript and \\ts to TypeScript mode.\nExecute \\help or \\? for help;",
+                            "language": "ansi"
+                        }
+                    ]
+                },
+                "currentHeight": 28,
+                "statements": [
+                    {
+                        "delimiter": ";",
+                        "span": {
+                            "start": 0,
+                            "length": 6
+                        },
+                        "contentStart": 0,
+                        "state": 0
+                    }
+                ]
+            },
+            "data": []
+        },
+        {
+            "state": {
+                "start": 2,
+                "end": 4,
+                "language": "mysql",
+                "result": {
+                    "type": "resultIds",
+                    "list": [
+                        "e84c26bf-2329-4e3d-fef1-1d84c09e0286",
+                        "fd1a2f5e-a1d5-479c-f099-4c72501ff4f2"
+                    ]
+                },
+                "currentHeight": 213.59375,
+                "currentSet": 1,
+                "statements": [
+                    {
+                        "delimiter": ";",
+                        "span": {
+                            "start": 0,
+                            "length": 9
+                        },
+                        "contentStart": 0,
+                        "state": 0
+                    },
+                    {
+                        "delimiter": ";",
+                        "span": {
+                            "start": 9,
+                            "length": 13
+                        },
+                        "contentStart": 11,
+                        "state": 0
+                    },
+                    {
+                        "delimiter": ";",
+                        "span": {
+                            "start": 22,
+                            "length": 1
+                        },
+                        "contentStart": 21,
+                        "state": 3
+                    }
+                ]
+            },
+            "data": [
+                {
+                    "tabId": "a40bf519-1123-4224-adb2-8a602d3909c5",
+                    "resultId": "e84c26bf-2329-4e3d-fef1-1d84c09e0286",
+                    "rows": [
+                        {
+                            "0": "id",
+                            "1": "int(11)",
+                            "2": "YES",
+                            "3": "",
+                            "4": null,
+                            "5": ""
+                        },
+                        {
+                            "0": "name",
+                            "1": "varchar(200)",
+                            "2": "YES",
+                            "3": "",
+                            "4": null,
+                            "5": ""
+                        },
+                        {
+                            "0": "level",
+                            "1": "int(11)",
+                            "2": "YES",
+                            "3": "",
+                            "4": null,
+                            "5": ""
+                        },
+                        {
+                            "0": "exp",
+                            "1": "int(11)",
+                            "2": "YES",
+                            "3": "",
+                            "4": null,
+                            "5": ""
+                        },
+                        {
+                            "0": "gold",
+                            "1": "decimal(10,2)",
+                            "2": "YES",
+                            "3": "",
+                            "4": null,
+                            "5": ""
+                        }
+                    ],
+                    "columns": [
+                        {
+                            "title": "Field",
+                            "field": "0",
+                            "dataType": {
+                                "type": 17
+                            }
+                        },
+                        {
+                            "title": "Type",
+                            "field": "1",
+                            "dataType": {
+                                "type": 17
+                            }
+                        },
+                        {
+                            "title": "Null",
+                            "field": "2",
+                            "dataType": {
+                                "type": 17
+                            }
+                        },
+                        {
+                            "title": "Key",
+                            "field": "3",
+                            "dataType": {
+                                "type": 17
+                            }
+                        },
+                        {
+                            "title": "Default",
+                            "field": "4",
+                            "dataType": {
+                                "type": 17
+                            }
+                        },
+                        {
+                            "title": "Extra",
+                            "field": "5",
+                            "dataType": {
+                                "type": 17
+                            }
+                        }
+                    ],
+                    "executionInfo": {
+                        "text": "OK, 5 records retrieved in 6.491ms"
+                    },
+                    "totalRowCount": 5,
+                    "hasMoreRows": false,
+                    "currentPage": 0,
+                    "index": 1,
+                    "sql": "\nDESC player"
+                },
+                {
+                    "tabId": "a40bf519-1123-4224-adb2-8a602d3909c5",
+                    "resultId": "fd1a2f5e-a1d5-479c-f099-4c72501ff4f2",
+                    "rows": [],
+                    "executionInfo": {
+                        "text": "OK, 0 records retrieved in 0s",
+                        "type": 4
+                    },
+                    "totalRowCount": 0,
+                    "hasMoreRows": false,
+                    "currentPage": 0,
+                    "index": 0,
+                    "sql": "use game"
+                }
+            ]
+        },
+        {
+            "state": {
+                "start": 5,
+                "end": 5,
+                "language": "mysql",
+                "result": {
+                    "type": "resultIds",
+                    "list": [
+                        "98480dbe-24a8-41de-c41a-94720a1c0bcb"
+                    ]
+                },
+                "currentHeight": 36,
+                "statements": [
+                    {
+                        "delimiter": ";",
+                        "span": {
+                            "start": 0,
+                            "length": 21
+                        },
+                        "contentStart": 0,
+                        "state": 0
+                    }
+                ]
+            },
+            "data": [
+                {
+                    "tabId": "a40bf519-1123-4224-adb2-8a602d3909c5",
+                    "resultId": "98480dbe-24a8-41de-c41a-94720a1c0bcb",
+                    "rows": [
+                        {
+                            "0": 1,
+                            "1": "zhangsan",
+                            "2": 1,
+                            "3": 1,
+                            "4": "1.00"
+                        },
+                        {
+                            "0": 1,
+                            "1": "zhangsan",
+                            "2": 1,
+                            "3": 1,
+                            "4": "1.00"
+                        },
+                        {
+                            "0": 1,
+                            "1": "lisi",
+                            "2": 1,
+                            "3": 1,
+                            "4": "1.00"
+                        }
+                    ],
+                    "columns": [
+                        {
+                            "title": "id",
+                            "field": "0",
+                            "dataType": {
+                                "type": 4
+                            }
+                        },
+                        {
+                            "title": "name",
+                            "field": "1",
+                            "dataType": {
+                                "type": 17
+                            }
+                        },
+                        {
+                            "title": "level",
+                            "field": "2",
+                            "dataType": {
+                                "type": 4
+                            }
+                        },
+                        {
+                            "title": "exp",
+                            "field": "3",
+                            "dataType": {
+                                "type": 4
+                            }
+                        },
+                        {
+                            "title": "gold",
+                            "field": "4",
+                            "dataType": {
+                                "type": 10
+                            }
+                        }
+                    ],
+                    "executionInfo": {
+                        "text": "OK, 3 records retrieved in 0s"
+                    },
+                    "totalRowCount": 3,
+                    "hasMoreRows": false,
+                    "currentPage": 0,
+                    "index": 0,
+                    "sql": "SELECT * FROM player"
+                }
+            ]
+        },
+        {
+            "state": {
+                "start": 6,
+                "end": 8,
+                "language": "mysql",
+                "result": {
+                    "type": "resultIds",
+                    "list": [
+                        "f6405ce0-5768-4921-d51b-e95ded7370de"
+                    ]
+                },
+                "currentHeight": 303.625,
+                "statements": [
+                    {
+                        "delimiter": ";",
+                        "span": {
+                            "start": 0,
+                            "length": 19
+                        },
+                        "contentStart": 1,
+                        "state": 0
+                    },
+                    {
+                        "delimiter": ";",
+                        "span": {
+                            "start": 19,
+                            "length": 32
+                        },
+                        "contentStart": 20,
+                        "state": 0
+                    },
+                    {
+                        "delimiter": ";",
+                        "span": {
+                            "start": 51,
+                            "length": 35
+                        },
+                        "contentStart": 52,
+                        "state": 0
+                    }
+                ]
+            },
+            "data": [
+                {
+                    "tabId": "a40bf519-1123-4224-adb2-8a602d3909c5",
+                    "resultId": "f6405ce0-5768-4921-d51b-e95ded7370de",
+                    "rows": [
+                        {
+                            "0": "character_set_client",
+                            "1": "utf8"
+                        },
+                        {
+                            "0": "character_set_connection",
+                            "1": "utf8"
+                        },
+                        {
+                            "0": "character_set_database",
+                            "1": "utf8"
+                        },
+                        {
+                            "0": "character_set_filesystem",
+                            "1": "binary"
+                        },
+                        {
+                            "0": "character_set_results",
+                            "1": "utf8"
+                        },
+                        {
+                            "0": "character_set_server",
+                            "1": "utf8"
+                        },
+                        {
+                            "0": "character_set_system",
+                            "1": "utf8"
+                        },
+                        {
+                            "0": "character_sets_dir",
+                            "1": "C:\\Program Files\\MySQL\\MySQL Server 5.7\\share\\charsets\\"
+                        }
+                    ],
+                    "columns": [
+                        {
+                            "title": "Variable_name",
+                            "field": "0",
+                            "dataType": {
+                                "type": 17
+                            }
+                        },
+                        {
+                            "title": "Value",
+                            "field": "1",
+                            "dataType": {
+                                "type": 17
+                            }
+                        }
+                    ],
+                    "executionInfo": {
+                        "text": "OK, 8 records retrieved in 2.164ms"
+                    },
+                    "totalRowCount": 8,
+                    "hasMoreRows": false,
+                    "currentPage": 0,
+                    "index": 0,
+                    "sql": "\nshow variables like '%character%';"
+                }
+            ]
+        },
+        {
+            "state": {
+                "start": 9,
+                "end": 9,
+                "language": "mysql",
+                "result": {
+                    "type": "text",
+                    "text": [
+                        {
+                            "type": 0,
+                            "index": 0,
+                            "content": "MySQL Error (1366): ClassicSession.run_sql: Incorrect string value: '\\xE5\\xBC\\xA0\\xE4\\xB8\\x89' for column 'name' at row 1",
+                            "language": "ansi"
+                        }
+                    ],
+                    "executionInfo": {
+                        "text": ""
+                    }
+                },
+                "currentHeight": 44.640625,
+                "statements": [
+                    {
+                        "delimiter": ";",
+                        "span": {
+                            "start": 0,
+                            "length": 69
+                        },
+                        "contentStart": 0,
+                        "state": 3
+                    }
+                ]
+            },
+            "data": []
+        },
+        {
+            "state": {
+                "start": 10,
+                "end": 10,
+                "language": "mysql",
+                "result": {
+                    "type": "resultIds",
+                    "list": [
+                        "9a55505c-8cb8-44a8-e293-0b818d734c24"
+                    ]
+                },
+                "currentHeight": 90.5,
+                "statements": [
+                    {
+                        "delimiter": ";",
+                        "span": {
+                            "start": 0,
+                            "length": 21
+                        },
+                        "contentStart": 0,
+                        "state": 0
+                    }
+                ]
+            },
+            "data": [
+                {
+                    "tabId": "a40bf519-1123-4224-adb2-8a602d3909c5",
+                    "resultId": "9a55505c-8cb8-44a8-e293-0b818d734c24",
+                    "rows": [
+                        {
+                            "0": 1,
+                            "1": "张三",
+                            "2": 1,
+                            "3": 1,
+                            "4": "1.00"
+                        }
+                    ],
+                    "columns": [
+                        {
+                            "title": "id",
+                            "field": "0",
+                            "dataType": {
+                                "type": 4
+                            }
+                        },
+                        {
+                            "title": "name",
+                            "field": "1",
+                            "dataType": {
+                                "type": 17
+                            }
+                        },
+                        {
+                            "title": "level",
+                            "field": "2",
+                            "dataType": {
+                                "type": 4
+                            }
+                        },
+                        {
+                            "title": "exp",
+                            "field": "3",
+                            "dataType": {
+                                "type": 4
+                            }
+                        },
+                        {
+                            "title": "gold",
+                            "field": "4",
+                            "dataType": {
+                                "type": 10
+                            }
+                        }
+                    ],
+                    "executionInfo": {
+                        "text": "OK, 1 record retrieved in 3.999ms"
+                    },
+                    "totalRowCount": 1,
+                    "hasMoreRows": false,
+                    "currentPage": 0,
+                    "index": 0,
+                    "sql": "SELECT * FROM player;"
+                }
+            ]
+        },
+        {
+            "state": {
+                "start": 11,
+                "end": 11,
+                "language": "mysql",
+                "currentHeight": 180,
+                "statements": [
+                    {
+                        "delimiter": ";",
+                        "span": {
+                            "start": 0,
+                            "length": 0
+                        },
+                        "contentStart": 0,
+                        "state": 0
+                    }
+                ]
+            },
+            "data": []
+        }
+    ]
+}
